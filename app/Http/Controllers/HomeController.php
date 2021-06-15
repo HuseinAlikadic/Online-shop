@@ -44,10 +44,10 @@ class HomeController extends Controller
     public function pretraziUredzajePoNazivu(Request $request){
        
         $nazivUredzaja=$request->get('naziv');
-        $pretrazi= UredzajiSviAparati::where('naziv', 'like', '%'.$nazivUredzaja. '%')->get();
+        $sviUredzaji= UredzajiSviAparati::where('naziv', 'like', '%'.$nazivUredzaja. '%')
+        ->select('id as uredzajiId', 'naziv as naziv', 'cijena as cijena') ->get();
        
-        return view('/search/search_uredzaji',['pretrazi'=>$pretrazi]);
-        
+        return view('/search/search',['sviUredzaji'=>$sviUredzaji]);  
     }
     
   
